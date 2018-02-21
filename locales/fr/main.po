@@ -1,0 +1,239 @@
+# Language: Français
+# Module: info - 1.8.8
+# Date: 2017-11-28 16:17:08
+# Translated with translater 2017.05.10
+
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Project-Id-Version: info 1.8.8\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2017-11-28T16:17:08+00:00\n"
+"Last-Translator: brol\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: _admin.php:27
+#: _admin.php:36
+#: index.php:30
+msgid "Informations"
+msgstr "Informations"
+
+#: inc/lib.info.php:148
+msgid "SQLite is not supported"
+msgstr "SQLite n'est pas supporté"
+
+#: inc/lib.info.php:188
+msgid "Added by"
+msgstr "Ajoutée par"
+
+#: inc/lib.info.php:189
+msgid "Records"
+msgstr "Enregistrements"
+
+#: inc/lib.info.php:226
+msgid "the %s plugin (provided with Dotclear)"
+msgstr "le plugin %s (fourni avec Dotclear)"
+
+#: inc/lib.info.php:231
+msgid "a plugin?"
+msgstr "un plugin&nbsp;?"
+
+#: inc/lib.info.php:247
+msgid "Total:"
+msgstr "Total&nbsp;:"
+
+#: inc/lib.info.php:273
+msgid "Directory"
+msgstr "Dossier"
+
+#: inc/lib.info.php:274
+msgid "Is a directory"
+msgstr "Est un dossier"
+
+#: inc/lib.info.php:275
+msgid "Is writable"
+msgstr "Peut être écrit"
+
+#: inc/lib.info.php:276
+msgid "Is readable"
+msgstr "Peut être lu"
+
+#: inc/lib.info.php:277
+msgid "Relative path"
+msgstr "Chemin relatif"
+
+#: inc/lib.info.php:278
+msgid "Absolute path"
+msgstr "Chemin absolu"
+
+#: inc/lib.info.php:280
+msgid "Owner"
+msgstr "Propriétaire"
+
+#: inc/lib.info.php:297
+#: inc/lib.info.php:306
+msgid "plugins"
+msgstr "plugins"
+
+#: inc/lib.info.php:311
+msgid "cache"
+msgstr "cache"
+
+#: inc/lib.info.php:312
+msgid "var"
+msgstr "var"
+
+#: inc/lib.info.php:315
+msgid "public"
+msgstr "public"
+
+#: inc/lib.info.php:319
+msgid "themes"
+msgstr "thèmes"
+
+#: inc/lib.info.php:323
+msgid "theme"
+msgstr "thème"
+
+#: inc/lib.info.php:432
+msgid "%1$s is not a valid directory, create the directory %2$s or change the settings"
+msgstr "%1$s n'est pas un dossier valide, créez le dossier %2$s ou changez les paramètres"
+
+#: inc/lib.info.php:440
+msgid "%1$s directory is not writable, its path is %2$s"
+msgstr "le dossier %1$s n'est pas accessible en écriture, son chemin est %2$s"
+
+#: inc/lib.info.php:447
+msgid "%1$s directory is not readable, its path is %2$s"
+msgstr "le dossier %1$s n'est pas accessible en lecture, son chemin est %2$s"
+
+#: inc/lib.info.php:457
+msgid "%1$s directory's owner is %2$s"
+msgstr "le propriétaire du dossier %1$s est %2$s"
+
+#: inc/lib.info.php:461
+msgid "%1$s directory's permissions are %2$s"
+msgstr "les permissions du dossier %1$s sont %2$s"
+
+#: index.php:65
+msgid "The blog ID is %s"
+msgstr "L'identifiant du blog est %s"
+
+#: index.php:66
+msgid "The blog URL is %s"
+msgstr "L'URL du blog est %s"
+
+#: index.php:67
+msgid "URL scan method is %s"
+msgstr "La méthode de lecture de l'URL est %s"
+
+#: index.php:72
+msgid "This blog has no published entry yet. To test the URL of the blog, please publish an entry."
+msgstr "Ce blog n'a pas encore de billet publié. Pour tester l'URL du blog, veuillez publier un billet."
+
+#: index.php:92
+msgid "The entry's URL %s returned a 200 status code, the page was found, it seems that the URL of the blog is correctly configured."
+msgstr "L'URL du billet %s a retourné le code 200, la page a été trouvée, il semblerait que l'URL du blog soit correctement configurée."
+
+#: index.php:98
+#: index.php:102
+msgid "The entry's URL %s returned a 404 status code, the page was not found, it seems that the URL of the blog is not correctly configured."
+msgstr "L'URL du billet %s a retourné le code 404, la page n'a pas été trouvée, il semblerait que l'URL du blog ne soit pas correctement configurée."
+
+#: index.php:108
+#: index.php:112
+msgid "The entry's URL %s returned a %s status code."
+msgstr "L'URL du billet %s a retourné le code %s."
+
+#: index.php:118
+msgid "Registered URLs"
+msgstr "URLs enregistrées"
+
+#: index.php:121
+#: index.php:169
+msgid "Directory informations"
+msgstr "Informations sur les dossiers"
+
+#: index.php:122
+msgid "Public directory is optional."
+msgstr "Le dossier public est facultatif."
+
+#: index.php:128
+msgid "The Dotclear version is %s"
+msgstr "La version de Dotclear est %s"
+
+#: index.php:130
+msgid "The web server is %s"
+msgstr "Le serveur Web est %s"
+
+#: index.php:137
+msgid "The user is %s"
+msgstr "L'utilisateur est %s"
+
+#: index.php:140
+msgid "The Operating System is %s."
+msgstr "Le système d'exploitation est %s."
+
+#: index.php:145
+msgid "The PHP version is %s"
+msgstr "La version de PHP est %s"
+
+#: index.php:146
+msgid "Safe mode is %s"
+msgstr "Le Safe mode est %s"
+
+#: index.php:147
+msgid "active"
+msgstr "actif"
+
+#: index.php:147
+msgid "inactive"
+msgstr "inactif"
+
+#: index.php:148
+msgid "Maximum size of a file when uploading a file is %s"
+msgstr "La taille maximale d'un fichier lors de l'envoi d'un fichier est %s"
+
+#: index.php:154
+msgid "The error_reporting level is %s"
+msgstr "Le niveau de error_reporting est %s"
+
+#: index.php:155
+msgid "The displayed errors are %s"
+msgstr "Les erreurs affichées sont %s"
+
+#: index.php:160
+msgid "Database"
+msgstr "Base de données"
+
+#: index.php:161
+msgid "The database driver is %1$s and its version is %2$s"
+msgstr "Le pilote de la base de données est %1$s et sa version est %2$s"
+
+#: index.php:163
+msgid "The database name is %1$s and the user is %2$s"
+msgstr "Le nom de la base de données est %1$s et l'utilisateur est %2$s"
+
+#: index.php:165
+msgid "The tables in your database of which name begin with %s prefix are:"
+msgstr "Les tables de votre base de données dont le nom commence par le préfixe %s sont&nbsp;:"
+
+#: index.php:176
+#: index.php:178
+msgid "Errors"
+msgstr "Erreurs"
+
+#: index.php:188
+msgid "Legend:"
+msgstr "Légende&nbsp;:"
+
+#: index.php:189
+msgid "error"
+msgstr "erreur"
+
+msgid "Informations about Dotclear and your system"
+msgstr "Informations à propos de Dotclear et de votre système"
+
