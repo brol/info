@@ -28,12 +28,12 @@ $this->registerModule(
      /* Name */         'Informations',
      /* Description*/   'Informations about Dotclear and your system',
      /* Author */       'Moe (http://gniark.net/), Pierre Van Glabeke',
-     /* Version */      '1.8.8',
+     /* Version */      '1.9.0',
 	/* Properties */
 	array(
 		'permissions' => 'usage,contentadmin',
 		'type' => 'plugin',
-		'dc_min' => '2.12',
+		'dc_min' => '2.10',
 		'support' => 'https://forum.dotclear.org/viewtopic.php?id=48753',
 		'details' => 'http://plugins.dotaddict.org/dc2/details/info'
 		)

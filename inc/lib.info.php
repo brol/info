@@ -58,7 +58,8 @@ class info
 	public static function printf($format,$array)
 	{
 		array_walk($array,
-			create_function('&$str','$str = \'<strong>\'.$str.\'</strong>\';'));
+			//create_function('&$str','$str = \'<strong>\'.$str.\'</strong>\';'));
+			function(&$str) { $str = '<strong>'.$str.'</strong>'; });
 		return(self::printf_array($format,$array));
 	}
 
@@ -148,18 +149,18 @@ class info
 			return('<p>'.__('SQLite is not supported').'</p>');
 		}
 		
-		$dotclear_tables = array('blog','category','session',
+		$dotclear_tables = array('spamrule','blog','link','category','session',
 			'setting','user','permissions','post','media','post_media',
 			'log','version','ping','comment','meta','pref');
 		
-		$default_plugins_tables = array(
-			'spamrule' => array(
-				'plugin' => 'antispam',
-				'name' => __('Antispam')),
-			'link' => array(
-				'plugin' => 'blogroll',
-				'name' => __('Blogroll'))
-		);
+		//$default_plugins_tables = array(
+		//	'spamrule' => array(
+		//		'plugin' => 'antispam',
+		//		'name' => __('Antispam')),
+		//	'link' => array(
+		//		'plugin' => 'blogroll',
+		//		'name' => __('Blogroll'))
+		//);
 		
 		# first comment at http://www.postgresql.org/docs/8.0/interactive/tutorial-accessdb.html
 		$query = ($core->con->driver() == 'pgsql')
@@ -218,14 +219,14 @@ class info
 					'?pf=info/images/icons/dotclear.png" '.
 					'alt="'.__('Dotclear').'" /> '.__('Dotclear'); 
 			}
-			elseif (array_key_exists($suffix,$default_plugins_tables))
-			{
-				$added_by = '<img src="index.php?pf=info/images/icons/'.
-					$default_plugins_tables[$suffix]['plugin'].'.png" alt="'.
-					$default_plugins_tables[$suffix]['name'].'" /> '.
-					self::f_return(__('the %s plugin (provided with Dotclear)'),
-					$default_plugins_tables[$suffix]['name']); 
-			}
+		//	elseif (array_key_exists($suffix,$default_plugins_tables))
+		//	{
+		//		$added_by = '<img src="index.php?pf=info/images/icons/'.
+		//			$default_plugins_tables[$suffix]['plugin'].'.png" alt="'.
+		//			$default_plugins_tables[$suffix]['name'].'" /> '.
+		//			self::f_return(__('the %s plugin (provided with Dotclear)'),
+		//			$default_plugins_tables[$suffix]['name']);
+		//	}
 			else
 			{
 				$added_by = __('a plugin?'); 
