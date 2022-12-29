@@ -24,19 +24,21 @@
 
 if (!defined('DC_CONTEXT_ADMIN')) {return;}
 
-$_menu['Plugins']->addItem(__('Informations'),'plugin.php?p=info','index.php?pf=info/icon.png',
-	preg_match('/plugin.php\?p=info(&.*)?$/',$_SERVER['REQUEST_URI']),
-	$core->auth->check('admin',$core->blog->id));
+dcCore::app()->menu[dcAdmin::MENU_BLOG]->addItem(
+    __('Informations'),
+    dcCore::app()->adminurl->get('admin.plugin.info'),
+    [dcPage::getPF('info/icon.png')],
+    preg_match('/' . preg_quote(dcCore::app()->adminurl->get('admin.plugin.info')) . '(&.*)?$/', $_SERVER['REQUEST_URI']),
+    dcCore::app()->auth->check(dcCore::app()->auth->makePermissions([dcAuth::PERMISSION_CONTENT_ADMIN]), dcCore::app()->blog->id)
+);
 
-$core->addBehavior('adminDashboardFavorites','infoDashboardFavorites');
-
-function infoDashboardFavorites($core,$favs)
-{
-	$favs->register('info', array(
-		'title' => __('Informations'),
-		'url' => 'plugin.php?p=info',
-		'small-icon' => 'index.php?pf=info/icon.png',
-		'large-icon' => 'index.php?pf=info/icon-big.png',
-		'permissions' => 'usage,contentadmin'
-	));
-}
+/* Register favorite */
+dcCore::app()->addBehavior('adminDashboardFavoritesV2', function (dcFavorites $favs) {
+    $favs->register('info', [
+        'title'       => __('Informations'),
+        'url'         => dcCore::app()->adminurl->get('admin.plugin.info'),
+        'small-icon'  => [dcPage::getPF('info/icon.png')],
+        'large-icon'  => [dcPage::getPF('info/icon-big.png')],
+        'permissions' => dcCore::app()->auth->makePermissions([dcAuth::PERMISSION_CONTENT_ADMIN]),
+    ]);
+});

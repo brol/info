@@ -25,16 +25,17 @@
 if (!defined('DC_RC_PATH')) {return;}
 
 $this->registerModule(
-     /* Name */         'Informations',
-     /* Description*/   'Informations about Dotclear and your system',
-     /* Author */       'Moe (http://gniark.net/), Pierre Van Glabeke',
-     /* Version */      '1.9.0',
-	/* Properties */
-	array(
-		'permissions' => 'usage,contentadmin',
-		'type' => 'plugin',
-		'dc_min' => '2.10',
-		'support' => 'https://forum.dotclear.org/viewtopic.php?id=48753',
-		'details' => 'http://plugins.dotaddict.org/dc2/details/info'
-		)
+    'Informations',
+    'Informations about Dotclear and your system',
+    'Moe (http://gniark.net/), Pierre Van Glabeke, Benoit Grelier',
+    '2.0.1',
+    [
+        'requires'    => [['core', '2.24']],
+        'permissions' => dcCore::app()->auth->makePermissions([
+            dcAuth::PERMISSION_CONTENT_ADMIN,
+        ]),
+        'type'      => 'plugin',
+        'support'   => 'https://forum.dotclear.org/viewtopic.php?id=48753',
+		'details'	=> 'http://plugins.dotaddict.org/dc2/details/info'
+    ]
 );

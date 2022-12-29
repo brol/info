@@ -33,7 +33,7 @@ $errors = array();
 
 # get URL of a post
 $post_url = null;
-$rs = $core->blog->getPosts(array('limit' => 1, 'post_status' => 1));
+$rs = dcCore::app()->blog->getPosts(array('limit' => 1, 'post_status' => 1));
 
 while ($rs->fetch())
 {
@@ -55,17 +55,17 @@ unset($rs);
 	<?php
 		echo dcPage::breadcrumb(
 			array(
-				html::escapeHTML($core->blog->name) => '',
+				html::escapeHTML(dcCore::app()->blog->name) => '',
 				'<span class="page-title">'.$page_title.'</span>' => ''
 			));
 	?>
 	
 	<div class="multi-part" id="blog" title="<?php echo __('Blog'); ?>">
 		<?php 
-			info::fp(__('The blog ID is %s'),$core->blog->id);
-			info::fp(__('The blog URL is %s'),$core->blog->url);
+			info::fp(__('The blog ID is %s'),dcCore::app()->blog->id);
+			info::fp(__('The blog URL is %s'),dcCore::app()->blog->url);
 			info::fp(__('URL scan method is %s'),
-				$core->blog->settings->system->url_scan);
+			dcCore::app()->blog->settings->system->url_scan);
 			
 			if ($post_url === null)
 			{
@@ -77,7 +77,7 @@ unset($rs);
 				{
 					# from dcBlog::__construct()
 					$host = preg_replace('|^([a-z]{3,}://)(.*?)$|','$2',
-						$core->blog->host);
+					dcCore::app()->blog->host);
 					
 					$netHttp = new netHttp($host);
 					$netHttp->setTimeout(5);
@@ -114,9 +114,10 @@ unset($rs);
 				}
 			}
 		?>
-		
-		<h3><?php echo(__('Registered URLs')); ?></h3>
-		<?php echo(info::urls()); ?>
+		<!-- TODO debug
+		<h3><?php //echo(__('Registered URLs')); ?></h3>
+		<?php //echo(info::urls()); ?> -->
+
 		
 		<h3><?php echo(__('Directory informations')); ?></h3>
 		<p><?php echo(__('Public directory is optional.')); ?></p>
@@ -159,11 +160,11 @@ unset($rs);
 		
 		<h3><?php echo(__('Database')); ?></h3>
 		<?php info::fp(__('The database driver is %1$s and its version is %2$s'),
-			$core->con->driver(),$core->con->version());
+			dcCore::app()->con->driver(),dcCore::app()->con->version());
 			info::fp(__('The database name is %1$s and the user is %2$s'),
-				$core->con->database(),DC_DBUSER);
+				dcCore::app()->con->database(),DC_DBUSER);
 			info::fp(__('The tables in your database of which name begin with %s prefix are:'),
-				$core->prefix); ?>
+				dcCore::app()->prefix); ?>
 		<?php echo(info::tables()); ?>
 		
 		<h3><?php echo(__('Directory informations')); ?></h3>

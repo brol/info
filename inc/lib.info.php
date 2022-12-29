@@ -88,7 +88,7 @@ class info
 	
 	public static function urls()
 	{
-		global $core;
+		dcCore::app();
 		
 		try
 		{
@@ -96,7 +96,7 @@ class info
 			$handlers = myUrlHandlers::getDefaults();
 			
 			# Overwrite with user settings
-			$settings = @unserialize($core->blog->settings->url_handlers);
+			$settings = @unserialize(dcCore::app()->blog->settings->url_handlers);
 			if (is_array($settings)) {
 				foreach ($settings as $name=>$url)
 				{
@@ -109,7 +109,7 @@ class info
 		}
 		catch (Exception $e)
 		{
-			$core->error->add($e->getMessage());
+			dcCore::app()->error->add($e->getMessage());
 		}
 		
 		# table
@@ -142,9 +142,9 @@ class info
 	
 	public static function tables()
 	{
-		global $core;
+		dcCore::app();
 		
-		if ($core->con->driver() == 'sqlite')
+		if (dcCore::app()->con->driver() == 'sqlite')
 		{
 			return('<p>'.__('SQLite is not supported').'</p>');
 		}
@@ -163,21 +163,21 @@ class info
 		//);
 		
 		# first comment at http://www.postgresql.org/docs/8.0/interactive/tutorial-accessdb.html
-		$query = ($core->con->driver() == 'pgsql')
+		$query = (dcCore::app()->con->driver() == 'pgsql')
 			# PostgreSQL
 			? 'SELECT table_name FROM information_schema.tables '.
 				'WHERE table_schema = \'public\' '.
 				# _ is a special character
 				# \see http://www.postgresql.org/docs/8.3/static/functions-matching.html#FUNCTIONS-LIKE
 				'AND table_name LIKE \''.str_replace('_','\\\\_',
-					$core->prefix).'%\''.
+					dcCore::app()->prefix).'%\''.
 				' ORDER BY table_name;'
 			# MySQL
 			# _ is a special character
 			# \see http://dev.mysql.com/doc/refman/5.0/en/string-comparison-functions.html
 			: 'SHOW TABLE STATUS LIKE \''.str_replace('_','\\_',
-				$core->prefix).'%\'';
-		$rs = $core->con->select($query);
+				dcCore::app()->prefix).'%\'';
+		$rs = dcCore::app()->con->select($query);
 
 		# table
 		$table = new table('class="clear"');
@@ -198,12 +198,12 @@ class info
 
 		while ($rs->fetch())
 		{
-			$name = ($core->con->driver() == 'pgsql') ?
+			$name = (dcCore::app()->con->driver() == 'pgsql') ?
 				$rs->f('table_name') : $rs->f('Name');
-			$rows = $core->con->select('SELECT COUNT(*) AS rows '.
+			$rows = dcCore::app()->con->select('SELECT COUNT(*) AS rows '.
 				'FROM '.$name.';')->f('rows');
-			$size = ($core->con->driver() == 'pgsql')
-				? $core->con->select('SELECT relpages * 8192 AS length '.
+			$size = (dcCore::app()->con->driver() == 'pgsql')
+				? dcCore::app()->con->select('SELECT relpages * 8192 AS length '.
 					'FROM pg_class WHERE relname = \''.$name.'\';')->f('length')
 				: $rs->f('Data_length')+$rs->f('Index_length');
 			$total_size += $size;
@@ -211,7 +211,7 @@ class info
 			
 			$default = '';
 			
-			$suffix = substr($name,strlen($core->prefix));
+			$suffix = substr($name,strlen(dcCore::app()->prefix));
 			
 			if (in_array($suffix,$dotclear_tables))
 			{
@@ -256,9 +256,10 @@ class info
 
 	public static function directories($system=false)
 	{
-		global $core,$errors;
+		dcCore::app();
+		global $errors;
 		
-		$settings = $core->blog->settings;
+		$settings = dcCore::app()->blog->settings;
 
 		$plugins_dirs = $plugins_paths = $dirs = array();
 
@@ -315,16 +316,16 @@ class info
 			$dirs = array(
 				__('public') => array(
 					'relative_path' => $settings->system->public_path,
-					'absolute_path' => $core->blog->public_path,
+					'absolute_path' => dcCore::app()->blog->public_path,
 					'url' => $settings->system->public_url),
 				__('themes') => array(
 					'relative_path' => $settings->system->themes_path,
-					'absolute_path' => $core->blog->themes_path,
+					'absolute_path' => dcCore::app()->blog->themes_path,
 					'url' => $settings->system->themes_url),
 				__('theme') => array(
 					'relative_path' => $settings->system->themes_path.'/'.
 						$settings->system->theme,
-					'absolute_path' => $core->blog->themes_path.'/'.
+					'absolute_path' => dcCore::app()->blog->themes_path.'/'.
 						$settings->system->theme,
 					'url' => $settings->system->themes_url.'/'.
 						$settings->system->theme)
@@ -362,7 +363,7 @@ class info
 				if (substr($url,0,1) == '/')
 				{
 					# public_path is located at the root of the website
-					$url = $core->blog->host.$url;
+					$url = dcCore::app()->blog->host.$url;
 				}
 				
 				$url = '<a href="'.$url.'">'.__('URL').'</a>';

@@ -24,6 +24,6 @@
 
 if (!defined('DC_RC_PATH')) {return;}
 
-$__autoload['myUrlHandlers'] = dirname(__FILE__).'/inc/class.myurlhandlers.php';
-
-myUrlHandlers::init($core);
+Clearbricks::lib()->autoload(['myUrlHandlers' => __DIR__ . '/inc/class.myurlhandlers.php']);
+// TODO debug //
+//myUrlHandlers::init(dcCore::app());

@@ -1,3 +1,7 @@
+v2.0.1 - 29-12-2022 - Pierre Van Glabeke & Benoit Grelier
+* màj dc2.24
+* url enregistrées désactivées
+
 v1.9.0 - 01-11-2018 - Pierre Van Glabeke
 * correction bug avec php 7.2 (merci à nanart : https://forum.dotclear.org/viewtopic.php?pid=342848#p342848)
 

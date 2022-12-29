@@ -31,10 +31,10 @@ class myUrlHandlers
 	private static $url2post = array();
 	private static $post_adm_url = array();
 	
-	public static function init($core)
+	public static function init()
 	{
 		# Set defaults
-		foreach ($core->url->getTypes() as $k=>$v)
+		foreach (dcCore::app()->url->getTypes() as $k=>$v)
 		{
 			if (empty($v['url'])) {
 				continue;
@@ -49,14 +49,14 @@ class myUrlHandlers
 			}
 		}
 		
-		foreach ($core->getPostTypes() as $k=>$v)
+		foreach (dcCore::app()->getPostTypes() as $k=>$v)
 		{
 			self::$url2post[$v['public_url']] = $k;
 			self::$post_adm_url[$k] = $v['admin_url'];
 		}
 		
 		# Read user settings
-		$handlers = (array) @unserialize($core->blog->settings->url_handlers);
+		$handlers = (array) @unserialize(dcCore::app()->blog->settings->url_handlers);
 		foreach ($handlers as $name => $url)
 		{
 			self::overrideHandler($name,$url);
@@ -65,13 +65,13 @@ class myUrlHandlers
 	
 	public static function overrideHandler($name,$url)
 	{
-		global $core;
+		dcCore::app();
 		
 		if (!isset(self::$defaults[$name])) {
 			return;
 		}
 		
-		$core->url->register($name,$url,
+		dcCore::app()->url->register($name,$url,
 			sprintf(self::$defaults[$name]['representation'],$url),
 			self::$defaults[$name]['handler']);
 		
@@ -79,7 +79,7 @@ class myUrlHandlers
 			? self::$url2post[self::$defaults[$name]['url'].'/%s'] : '';
 		
 		if ($k) {
-			$core->setPostType($k,self::$post_adm_url[$k],$core->url->getBase($name).'/%s');
+			dcCore::app()->setPostType($k,self::$post_adm_url[$k],dcCore::app()->url->getBase($name).'/%s');
 		}
 	}
 	
