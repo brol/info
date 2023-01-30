@@ -27,15 +27,15 @@ if (!defined('DC_RC_PATH')) {return;}
 $this->registerModule(
     'Informations',
     'Informations about Dotclear and your system',
-    'Moe (http://gniark.net/), Pierre Van Glabeke, Benoit Grelier',
-    '2.0.1',
+    'Moe (http://gniark.net/), Pierre Van Glabeke, Benoit Grelier and contributors',
+    '2.0.1-dev',
     [
         'requires'    => [['core', '2.24']],
         'permissions' => dcCore::app()->auth->makePermissions([
             dcAuth::PERMISSION_CONTENT_ADMIN,
         ]),
-        'type'      => 'plugin',
-        'support'   => 'https://forum.dotclear.org/viewtopic.php?id=48753',
-		'details'	=> 'http://plugins.dotaddict.org/dc2/details/info'
+        'type'       => 'plugin',
+        'support'    => 'https://forum.dotclear.org/viewtopic.php?id=48753',
+        'details'    => 'https://plugins.dotaddict.org/dc2/details/' . basename(__DIR__),
     ]
 );
